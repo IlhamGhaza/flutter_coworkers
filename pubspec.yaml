@@ -33,6 +33,11 @@ dependencies:
   flutter:
     sdk: flutter
   google_fonts: ^6.2.1
+  intl: ^0.20.1
+  d_info: ^0.2.0
+  d_method: ^0.2.6
+  d_session: ^0.0.3
+  get: ^4.6.6
 
 dev_dependencies:
   build_runner: ^2.4.7
@@ -43,7 +48,7 @@ dev_dependencies:
   freezed: ^2.4.6
 
 flutter_gen:
-  output: lib/core/assets/
+  output: lib/config/assets/  #generated file path
   integrations:
     flutter_svg: true
 
