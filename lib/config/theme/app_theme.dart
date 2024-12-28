@@ -9,26 +9,41 @@ class AppTheme {
   static const bgHeader = Color(0xffB3DCF2);
 
   static final ThemeData lightTheme = ThemeData(
-    primaryColor: primary,
-    scaffoldBackgroundColor: Colors.white,
-    appBarTheme: AppBarTheme(
-      color: primary,
-      elevation: 0,
-      iconTheme: IconThemeData(color: Colors.white),
-    ),
-    textTheme: GoogleFonts.poppinsTextTheme().apply(
-      bodyColor: Colors.black87,
-      displayColor: Colors.black,
-    ),
-    colorScheme: ColorScheme.light(
-      primary: primary,
-      secondary: btnSecondary,
-    ),
-    buttonTheme: ButtonThemeData(
-      buttonColor: primary,
-      textTheme: ButtonTextTheme.primary,
-    ),
-  );
+      primaryColor: primary,
+      scaffoldBackgroundColor: Colors.white,
+      appBarTheme: AppBarTheme(
+        color: primary,
+        elevation: 0,
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
+      textTheme: GoogleFonts.poppinsTextTheme().apply(
+        bodyColor: Color(0xff13162f),
+        displayColor: Colors.black,
+      ),
+      colorScheme: ColorScheme.light(
+        primary: primary,
+        secondary: btnSecondary,
+      ),
+      buttonTheme: ButtonThemeData(
+        buttonColor: primary,
+        textTheme: ButtonTextTheme.primary,
+      ),
+      filledButtonTheme: FilledButtonThemeData(
+        style: ButtonStyle(
+          minimumSize: MaterialStateProperty.all(
+            Size.fromHeight(
+              52,
+            )
+          ),
+          textStyle: MaterialStateProperty.all(
+            TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ));
 
   static final ThemeData darkTheme = ThemeData(
     primaryColor: primary,
