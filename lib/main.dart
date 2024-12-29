@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'config/appwrite.dart';
 import 'config/extension/route_ext.dart';
 import 'config/theme/app_theme.dart';
+import 'presentation/login/login.dart';
 import 'presentation/login/onboarding.dart';
 import 'presentation/login/signup.dart';
 
@@ -37,8 +38,8 @@ class MyApp extends StatelessWidget {
       initialRoute: RouteExt.getStarted.name,
       routes: {
         RouteExt.getStarted.name: (context) => const Onboarding(),
-        // RouteExt.login.name: (context) => const Login(),
         RouteExt.register.name: (context) => const Signup(),
+        RouteExt.login.name: (context) => const Login(),
         // RouteExt.forgotPassword.name: (context) => const ForgotPassword(),
         // RouteExt.resetPassword.name: (context) => const ResetPassword(),
         // RouteExt.verifyEmail.name: (context) => const VerifyEmail(),

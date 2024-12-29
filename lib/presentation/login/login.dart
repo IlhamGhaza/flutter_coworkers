@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_coworkers/presentation/login/widget/input_auth.dart';
 
 import '../../config/assets/assets.gen.dart';
 import '../../config/extension/route_ext.dart';
 import '../../config/theme/app_theme.dart';
+import 'widget/input_auth.dart';
 
-class Signup extends StatefulWidget {
-  const Signup({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<Signup> createState() => _SignupState();
+  State<Login> createState() => _LoginState();
 }
 
-class _SignupState extends State<Signup> {
+class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
-  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
-  bool _agreeToTerms = false;
+  // bool _agreeToTerms = false;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +50,7 @@ class _SignupState extends State<Signup> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          'New Account',
+                          'Sign In',
                           style: TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
@@ -61,7 +59,7 @@ class _SignupState extends State<Signup> {
                         ),
                         SizedBox(height: 20),
                         Text(
-                          'Let\'s grow your business',
+                          'Manage your account',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -80,19 +78,6 @@ class _SignupState extends State<Signup> {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
-                InputAuth(
-                  editingController: _nameController,
-                  labelText: 'Input your name',
-                  keyboardType: TextInputType.text,
-                  obscureText: false,
-                  prefixIcon: Icons.person,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your name';
-                    }
-                    return null;
-                  },
-                ),
                 SizedBox(height: 20),
                 InputAuth(
                   editingController: _emailController,
@@ -128,74 +113,29 @@ class _SignupState extends State<Signup> {
                     return null;
                   },
                 ),
-                SizedBox(height: 20),
-                InputAuth(
-                  editingController: _confirmPasswordController,
-                  labelText: 'Confirm your password',
-                  keyboardType: TextInputType.text,
-                  obscureText: true,
-                  prefixIcon: Icons.lock,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please confirm your password';
-                    }
-                    if (value != _passwordController.text) {
-                      return 'Passwords do not match';
-                    }
-                    return null;
-                  },
-                ),
                 SizedBox(height: 30),
-                Row(
-                  children: [
-                    Checkbox(
-                      value: _agreeToTerms,
-                      onChanged: (value) {
-                        setState(() {
-                          _agreeToTerms = value ?? false;
-                        });
-                      },
-                    ),
-                    Expanded(
-                      child: Text(
-                        'I agree to the Terms and Conditions',
-                        style: TextStyle(color: Color(0xff13162f)),
-                      ),
-                    ),
-                  ],
-                ),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   child: FilledButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate() && _agreeToTerms) {
+                      if (_formKey.currentState!.validate()) {
                         // Process signup
                         print('Form is valid. Processing signup...');
-                      } else if (!_agreeToTerms) {
+                      } else if (!_formKey.currentState!.validate()) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              'Please agree to the Terms and Conditions',
+                              'Please fill out all fields',
                             ),
                             duration: const Duration(seconds: 3),
                             backgroundColor: Colors.red,
                           ),
                         );
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Please fill in all required fields',
-                            ),
-                            duration: const Duration(seconds: 3),
-                            backgroundColor: Colors.red,
-                          ),
-                        );
-                      }
+                      } 
                     },
                     child: Text(
-                      'Sign Up',
+                      'Sign In',
                     ),
                   ),
                 ),
@@ -207,10 +147,10 @@ class _SignupState extends State<Signup> {
                         backgroundColor:
                             MaterialStateProperty.all(AppTheme.btnSecondary)),
                     onPressed: () {
-                      Navigator.pushNamed(context, RouteExt.login.name);
+                      Navigator.pushNamed(context, RouteExt.register.name);
                     },
                     child: Text(
-                      'Sign In to My Account',
+                      'Create an Account',
                       style: TextStyle(color: Colors.black),
                     ),
                   ),
