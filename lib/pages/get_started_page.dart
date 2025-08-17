@@ -74,11 +74,11 @@ class GetStartedPage extends StatelessWidget {
                     Text(
                       'explore_worker'.tr,
                       style: TextStyle(
-                          color: Theme.of(context).colorScheme.onSurface),
+                          color: Colors.white),
                     ),
                     ImageIcon(
                       AssetImage('assets/images/ic_white_arrow_right.png'),
-                      color: Theme.of(context).colorScheme.onSurface,
+                      color: Colors.white,
                     ),
                   ],
                 ),
