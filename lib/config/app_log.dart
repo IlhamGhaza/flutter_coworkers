@@ -1,7 +1,7 @@
 import 'package:d_method/d_method.dart';
 
 class AppLog {
-  static success({String? title, required String body}) {
+  static void success({String? title, required String body}) {
     if (title == null) {
       DMethod.printBasic(body, 40);
       return;
@@ -10,7 +10,7 @@ class AppLog {
     DMethod.printTitle(title, body, titleCode: 10, bodyCode: 40);
   }
 
-  static error({String? title, required String body}) {
+  static void error({String? title, required String body}) {
     if (title == null) {
       DMethod.printBasic(body, 160);
       return;
@@ -19,7 +19,7 @@ class AppLog {
     DMethod.printTitle(title, body, titleCode: 1, bodyCode: 160);
   }
 
-  static netral({String? title, required String body}) {
+  static void netral({String? title, required String body}) {
     if (title == null) {
       DMethod.printBasic(body);
       return;

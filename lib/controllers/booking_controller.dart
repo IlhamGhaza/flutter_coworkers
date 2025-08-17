@@ -1,17 +1,17 @@
-import 'package:flutter_coworkers/models/booking_model.dart';
-import 'package:flutter_coworkers/models/worker_model.dart';
+import 'package:flutter_coworkers/data/models/booking_model.dart';
+import 'package:flutter_coworkers/data/models/worker_model.dart';
 import 'package:get/get.dart';
 
 class BookingController extends GetxController {
-  clear() {
+  void clear() {
     Get.delete<BookingController>(force: true);
   }
 
-  final hourDuartion = [5, 10, 15, 25, 40, 100];
+  final List<int> hourDuartion = [5, 10, 15, 25, 40, 100];
 
-  final _duration = 10.obs;
+  final RxInt _duration = 10.obs;
   int get duration => _duration.value;
-  setDuration(int n, double hourRate) {
+  void setDuration(int n, double hourRate) {
     _duration.value = n;
     BookingModel newBookingModel = bookingDetail
       ..hiringDuration = n
@@ -20,7 +20,7 @@ class BookingController extends GetxController {
     update();
   }
 
-  final _bookingDetail = BookingModel(
+  final Rx<BookingModel> _bookingDetail = BookingModel(
     userId: '',
     workerId: '',
     date: DateTime.now(),
@@ -38,7 +38,7 @@ class BookingController extends GetxController {
   ).obs;
   BookingModel get bookingDetail => _bookingDetail.value;
 
-  iniBookingDetail(String userId, WorkerModel worker) {
+  void iniBookingDetail(String userId, WorkerModel worker) {
     _bookingDetail.value = BookingModel(
       userId: userId,
       workerId: worker.$id,

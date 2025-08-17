@@ -12,10 +12,10 @@ class InputTitle extends StatelessWidget {
       ),
       child: Text(
         x,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w400,
-          color: Colors.black,
+          color: Theme.of(context).colorScheme.onSurface,
         ),
       ),
     );

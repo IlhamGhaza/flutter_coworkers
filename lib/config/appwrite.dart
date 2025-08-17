@@ -4,17 +4,17 @@ class Appwrite {
   static const projectId = '676d1877003db151bea8';
   static const endpoint = 'https://cloud.appwrite.io/v1';
 
-  static const databaseId = '64c60901c882c2ab5e0d';
-  static const collectionUsers = '64c60935548fe5530d13';
-  static const collectionWorkers = '64c60950b7b8ad8aada2';
-  static const collectionBooking = '64c6095ea299a9013301';
-  static const bucketWorker = '64c6107e6b2f8de9174a';
+  static const databaseId = '676d378a00035b1b307f';
+  static const collectionUsers = '676d3a12003bedbfbdc2';
+  static const collectionWorkers = '676d3a3a000937dc9587';
+  static const collectionBooking = '676d3a49002a7ad0f44d';
+  static const bucketWorker = '676d47db001f596a6ac8';
 
   static Client client = Client();
   static late Account account;
   static late Databases databases;
 
-  static init() {
+  static void init() {
     client
         .setEndpoint(endpoint)
         .setProject(projectId)

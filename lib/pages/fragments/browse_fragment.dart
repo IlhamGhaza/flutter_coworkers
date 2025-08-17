@@ -30,9 +30,11 @@ class _BrowseFragmentState extends State<BrowseFragment> {
       children: [
         SizedBox(
           height: 414,
+          width: double.infinity,
           child: Stack(
             children: [
-              Image.asset('assets/bg_discover_page.png'),
+              Image.asset('assets/images/bg_discover_page.png',
+                  fit: BoxFit.cover, width: double.infinity),
               Transform.translate(
                 offset: const Offset(0, 25),
                 child: Column(
@@ -40,21 +42,21 @@ class _BrowseFragmentState extends State<BrowseFragment> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     header(),
-                    DView.spaceHeight(30),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                    DView.height(30),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
-                        'Anda butuh pekerja\napa untuk hari ini?',
+                        'need_worker_today'.tr,
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w700,
-                          color: Colors.black,
+                          color: Theme.of(context).colorScheme.onSurface,
                         ),
                       ),
                     ),
-                    DView.spaceHeight(20),
+                    DView.height(20),
                     categories(),
-                    DView.spaceHeight(40),
+                    DView.height(40),
                     searchBox(),
                   ],
                 ),
@@ -62,15 +64,15 @@ class _BrowseFragmentState extends State<BrowseFragment> {
             ],
           ),
         ),
-        DView.spaceHeight(50),
+        DView.height(50),
         latestStats(),
-        DView.spaceHeight(30),
+        DView.height(30),
         highRatedWorkers(),
-        DView.spaceHeight(30),
+        DView.height(30),
         newcomers(),
-        DView.spaceHeight(30),
+        DView.height(30),
         curatedTips(),
-        DView.spaceHeight(30),
+        DView.height(30),
       ],
     );
   }
@@ -81,7 +83,7 @@ class _BrowseFragmentState extends State<BrowseFragment> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SectionTitle(text: 'Curated Tips'),
+          SectionTitle(text: 'curated_tips'.tr),
           Column(
             children: browseController.curatedTips.map((item) {
               return Padding(
@@ -106,9 +108,9 @@ class _BrowseFragmentState extends State<BrowseFragment> {
                               ),
                               height: 24,
                               alignment: Alignment.center,
-                              child: const Text(
-                                'Popular',
-                                style: TextStyle(
+                              child: Text(
+                                'popular'.tr,
+                                style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
                                   height: 1,
@@ -118,17 +120,17 @@ class _BrowseFragmentState extends State<BrowseFragment> {
                           ),
                       ],
                     ),
-                    DView.spaceWidth(),
+                    DView.width(),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           item['name'],
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
-                            color: Colors.black,
+                            color: Theme.of(context).colorScheme.onSurface,
                           ),
                         ),
                         Text(
@@ -151,8 +153,8 @@ class _BrowseFragmentState extends State<BrowseFragment> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SectionTitle(text: 'Newcomers', autoPadding: true),
-        DView.spaceHeight(),
+        SectionTitle(text: 'newcomers'.tr, autoPadding: true),
+        DView.height(),
         GridView.builder(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -176,7 +178,7 @@ class _BrowseFragmentState extends State<BrowseFragment> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(item['image'], width: 46, height: 46),
-                  DView.spaceWidth(12),
+                  DView.width(12),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -184,10 +186,10 @@ class _BrowseFragmentState extends State<BrowseFragment> {
                       children: [
                         Text(
                           item['name'],
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
-                            color: Colors.black,
+                            color: Theme.of(context).colorScheme.onSurface,
                           ),
                         ),
                         Text(
@@ -210,8 +212,8 @@ class _BrowseFragmentState extends State<BrowseFragment> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SectionTitle(text: 'High Rated Workers', autoPadding: true),
-        DView.spaceHeight(),
+        SectionTitle(text: 'high_rated_workers'.tr, autoPadding: true),
+        DView.height(),
         SizedBox(
           height: 120,
           child: ListView.builder(
@@ -236,28 +238,29 @@ class _BrowseFragmentState extends State<BrowseFragment> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(worker['image'], width: 46, height: 46),
-                    DView.spaceHeight(6),
+                    DView.height(6),
                     Text(
                       worker['name'],
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
-                        color: Colors.black,
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                     ),
-                    DView.spaceHeight(4),
+                    DView.height(4),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
-                          'assets/ic_star_small.png',
+                          'assets/images/ic_star_small.png',
                           height: 16,
                           width: 16,
                         ),
-                        DView.spaceWidth(2),
+                        DView.width(2),
                         Text(
                           '${worker['rate']}',
-                          style: const TextStyle(color: Colors.black),
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.onSurface),
                         ),
                       ],
                     ),
@@ -277,20 +280,20 @@ class _BrowseFragmentState extends State<BrowseFragment> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SectionTitle(text: 'Latest Stats'),
-          DView.spaceHeight(),
+          SectionTitle(text: 'latest_stats'.tr),
+          DView.height(),
           Row(
             children: [
               Expanded(
                 child: Row(
                   children: [
                     Image.asset(
-                      'assets/ic_hired_stats.png',
+                      'assets/images/ic_hired_stats.png',
                       width: 46,
                       height: 46,
                     ),
-                    DView.spaceWidth(12),
-                    const Expanded(
+                    DView.width(12),
+                    Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -299,10 +302,15 @@ class _BrowseFragmentState extends State<BrowseFragment> {
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
-                              color: Colors.black,
+                              color: Theme.of(context).colorScheme.onSurface,
                             ),
                           ),
-                          Text('Hired', style: TextStyle(color: Colors.black)),
+                          Text(
+                            'hired_stat'.tr,
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onSurface,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -313,12 +321,12 @@ class _BrowseFragmentState extends State<BrowseFragment> {
                 child: Row(
                   children: [
                     Image.asset(
-                      'assets/ic_money_spend.png',
+                      'assets/images/ic_money_spend.png',
                       width: 46,
                       height: 46,
                     ),
-                    DView.spaceWidth(12),
-                    const Expanded(
+                    DView.width(12),
+                    Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -327,12 +335,14 @@ class _BrowseFragmentState extends State<BrowseFragment> {
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
-                              color: Colors.black,
+                              color: Theme.of(context).colorScheme.onSurface,
                             ),
                           ),
                           Text(
-                            'Expense',
-                            style: TextStyle(color: Colors.black),
+                            'expense_stat'.tr,
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onSurface,
+                            ),
                           ),
                         ],
                       ),
@@ -356,7 +366,7 @@ class _BrowseFragmentState extends State<BrowseFragment> {
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xffe5e7ec).withOpacity(0.5),
+            color: const Color(0xffe5e7ec).withValues(alpha: 0.5),
             blurRadius: 30,
             offset: const Offset(0, 6),
           ),
@@ -366,20 +376,20 @@ class _BrowseFragmentState extends State<BrowseFragment> {
       padding: const EdgeInsets.only(left: 20, right: 8),
       child: Row(
         children: [
-          const Expanded(
+          Expanded(
             child: TextField(
               decoration: InputDecoration(
-                hintText: 'Search your dream worker',
-                hintStyle: TextStyle(
+                hintText: 'search_hint'.tr,
+                hintStyle: const TextStyle(
                   color: Color(0xffA7A8B3),
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
                 ),
                 border: InputBorder.none,
-                contentPadding: EdgeInsets.all(0),
+                contentPadding: const EdgeInsets.all(0),
                 isDense: true,
               ),
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
@@ -388,7 +398,7 @@ class _BrowseFragmentState extends State<BrowseFragment> {
           ),
           IconButton(
             onPressed: () {},
-            icon: const ImageIcon(AssetImage('assets/ic_search.png')),
+            icon: const ImageIcon(AssetImage('assets/images/ic_search.png')),
           ),
         ],
       ),
@@ -406,9 +416,8 @@ class _BrowseFragmentState extends State<BrowseFragment> {
           Map category = browseController.categories[index];
           return GestureDetector(
             onTap: () {
-              Navigator.pushNamed(
-                context,
-                AppRoute.listWorker.name,
+              Get.toNamed(
+                AppRoute.listWorker.path,
                 arguments: category['label'],
               );
             },
@@ -426,7 +435,7 @@ class _BrowseFragmentState extends State<BrowseFragment> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(category['icon'], width: 46, height: 46),
-                  DView.spaceHeight(8),
+                  DView.height(8),
                   Text(
                     category['label'],
                     style: const TextStyle(
@@ -461,33 +470,34 @@ class _BrowseFragmentState extends State<BrowseFragment> {
             child: Obx(() {
               return Text(
                 userController.data.name?[0] ?? '',
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w700,
-                  color: Colors.black,
+                  color: Theme.of(context).colorScheme.onSurface,
                 ),
               );
             }),
           ),
-          DView.spaceWidth(12),
+          DView.width(12),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Obx(() {
                   return Text(
-                    'Hi, ${userController.data.name ?? ''}',
-                    style: const TextStyle(
+                    'hi_name'
+                        .trParams({'name': userController.data.name ?? ''}),
+                    style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
-                      color: Colors.black,
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
                   );
                 }),
-                const Text(
-                  'Recruiter',
+                Text(
+                  'recruiter'.tr,
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Theme.of(context).colorScheme.onSurface,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -495,15 +505,15 @@ class _BrowseFragmentState extends State<BrowseFragment> {
             ),
           ),
           IconButton.filled(
-            onPressed: () {},
+            onPressed: () => Get.toNamed(AppRoute.notifications.path),
             icon: const Badge(
               smallSize: 10,
               backgroundColor: Colors.red,
-              child: ImageIcon(AssetImage('assets/ic_notification.png')),
+              child: ImageIcon(AssetImage('assets/images/ic_notification.png')),
             ),
             style: const ButtonStyle(
-              backgroundColor: MaterialStatePropertyAll(Colors.white),
-              foregroundColor: MaterialStatePropertyAll(Colors.black),
+              backgroundColor: WidgetStatePropertyAll(Colors.white),
+              foregroundColor: WidgetStatePropertyAll(Colors.black),
             ),
           ),
         ],

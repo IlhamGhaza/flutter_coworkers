@@ -1,4 +1,4 @@
-import 'package:flutter_coworkers/models/worker_model.dart';
+import 'package:flutter_coworkers/data/models/worker_model.dart';
 import 'package:intl/intl.dart';
 
 class BookingModel {

@@ -34,12 +34,12 @@ class _SignUpPageState extends State<SignUpPage> {
               fit: StackFit.expand,
               children: [
                 Image.asset(
-                  'assets/signin_background.png',
+                  'assets/images/signin_background.png',
                   fit: BoxFit.fitWidth,
                 ),
                 Center(
                   child: Image.asset(
-                    'assets/applogo.png',
+                    'assets/images/applogo.png',
                     height: 100,
                     width: 100,
                   ),
@@ -61,7 +61,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             color: Colors.black,
                           ),
                         ),
-                        DView.spaceHeight(8),
+                        DView.height(8),
                         const Text("Let's grow your business today"),
                       ],
                     ),
@@ -70,7 +70,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ],
             ),
           ),
-          DView.spaceHeight(50),
+          DView.height(50),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
@@ -80,19 +80,19 @@ class _SignUpPageState extends State<SignUpPage> {
                   title: 'Complete Name',
                   hint: 'Write your name',
                 ),
-                DView.spaceHeight(),
+                DView.height(),
                 InputAuth(
                   editingController: signUpController.edtEmail,
                   title: 'Email Address',
                   hint: 'Write your email',
                 ),
-                DView.spaceHeight(),
+                DView.height(),
                 InputAuthPassword(
                   editingController: signUpController.edtPassword,
                   title: 'Password',
                   hint: 'Write your password',
                 ),
-                DView.spaceHeight(30),
+                DView.height(30),
                 Row(
                   children: [
                     Container(
@@ -110,14 +110,14 @@ class _SignUpPageState extends State<SignUpPage> {
                         color: Theme.of(context).primaryColor,
                       ),
                     ),
-                    DView.spaceWidth(8),
+                    DView.width(8),
                     const Text(
                       'I agree with terms and conditions',
                       style: TextStyle(color: Colors.black),
                     ),
                   ],
                 ),
-                DView.spaceHeight(30),
+                DView.height(30),
                 Obx(() {
                   bool loading = signUpController.loading;
                   if (loading) return DView.loadingCircle();
@@ -125,20 +125,23 @@ class _SignUpPageState extends State<SignUpPage> {
                     onPressed: () {
                       signUpController.execute(context);
                     },
-                    child: const Text('Sign Up'),
+                    child: Text(
+                      'sign_up'.tr,
+                      style: TextStyle(color: Colors.white),
+                    ),
                   );
                 }),
-                DView.spaceHeight(),
+                DView.height(),
                 SecondaryButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Get.back();
                   },
-                  child: const Text('Sign In to My Account'),
+                  child: Text('sign_in_to_my_account'.tr),
                 ),
               ],
             ),
           ),
-          DView.spaceHeight(30),
+          DView.height(30),
         ],
       ),
     );

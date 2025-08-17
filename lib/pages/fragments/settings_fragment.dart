@@ -4,8 +4,10 @@ import 'package:flutter_coworkers/controllers/user_controller.dart';
 import 'package:d_view/d_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_coworkers/config/appwrite.dart';
 
 import '../../config/app_color.dart';
+import '../../controllers/fragments/settings_controller.dart';
 
 class SettingsFragment extends StatefulWidget {
   const SettingsFragment({super.key});
@@ -16,33 +18,33 @@ class SettingsFragment extends StatefulWidget {
 
 class _SettingsFragmentState extends State<SettingsFragment> {
   final userController = Get.put(UserController());
+  final settingsController = Get.put(SettingsController());
 
-  logout() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text('Sign Out', style: TextStyle(color: Colors.black)),
-          content: const Text(
-            'You sure want to sign out?',
-            style: TextStyle(color: Colors.black),
+  void logout() {
+    Get.dialog(
+      AlertDialog(
+        title: Text('sign_out'.tr),
+        content: Text('sign_out_confirm'.tr),
+        actions: [
+          TextButton(
+            onPressed: () => Get.back(),
+            child: Text('no'.tr),
           ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('No'),
-            ),
-            TextButton(
-              onPressed: () => Navigator.pop(context, true),
-              child: const Text('Yes'),
-            ),
-          ],
-        );
-      },
-    ).then((yes) {
+          TextButton(
+            onPressed: () => Get.back(result: true),
+            child: Text('yes'.tr),
+          ),
+        ],
+      ),
+    ).then((yes) async {
       if (yes ?? false) {
-        AppSession.removeUser();
-        Navigator.pushReplacementNamed(context, AppRoute.signIn.name);
+        try {
+          await Appwrite.account.deleteSession(sessionId: 'current');
+        } catch (e) {
+          // Ignore errors from remote session deletion; still clear local session
+        }
+        await AppSession.removeUser();
+        Get.offAllNamed(AppRoute.signIn.path);
       }
     });
   }
@@ -72,7 +74,7 @@ class _SettingsFragmentState extends State<SettingsFragment> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     header(),
-                    DView.spaceHeight(20),
+                    DView.height(20),
                     Container(
                       width: 150,
                       height: 150,
@@ -88,10 +90,10 @@ class _SettingsFragmentState extends State<SettingsFragment> {
                             : userController.data.name!.substring(0, 1);
                         return Text(
                           initialName,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 60,
                             fontWeight: FontWeight.w700,
-                            color: Colors.black,
+                            color: Theme.of(context).colorScheme.onSurface,
                           ),
                         );
                       }),
@@ -102,34 +104,52 @@ class _SettingsFragmentState extends State<SettingsFragment> {
             ],
           ),
         ),
-        DView.spaceHeight(),
+        DView.height(),
         Center(
           child: Obx(
             () => Text(
               userController.data.name ?? '',
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.w600,
-                color: Colors.black,
+                color: Theme.of(context).colorScheme.onSurface,
               ),
             ),
           ),
         ),
-        const Center(
-          child: Text('Recruiter Account', style: TextStyle(fontSize: 16)),
+        Center(
+          child: Text('recruiter_account'.tr,
+              style: const TextStyle(fontSize: 16)),
         ),
-        DView.spaceHeight(),
-        itemSetting('assets/ic_edit.png', 'Edit Profile'),
+        DView.height(),
+        itemSetting('assets/images/ic_edit.png', 'Edit Profile'),
         itemDivider(),
-        itemSetting('assets/ic_invoice.png', 'Invoices'),
+        itemSetting('assets/images/ic_invoice.png', 'Invoices'),
         itemDivider(),
-        itemSetting('assets/ic_payment_setting.png', 'Payments'),
+        itemSetting('assets/images/ic_payment_setting.png', 'Payments'),
         itemDivider(),
-        itemSetting('assets/ic_notification_setting.png', 'Notification'),
+        itemSetting(
+          'assets/images/ic_notification_setting.png',
+          'notifications'.tr,
+          onTap: () => Get.toNamed(AppRoute.notifications.path),
+        ),
         itemDivider(),
-        itemSetting('assets/ic_rate_app.png', 'Rate App'),
+        itemSetting(
+          'assets/images/ic_settings_grey.png',
+          'theme'.tr,
+          onTap: _showThemeSheet,
+        ),
         itemDivider(),
-        itemSetting('assets/ic_sign_out.png', 'Sign Out', onTap: logout),
+        itemSetting(
+          'assets/images/ic_settings_grey.png',
+          'language'.tr,
+          onTap: _showLanguageSheet,
+        ),
+        itemDivider(),
+        itemSetting('assets/images/ic_rate_app.png', 'Rate App'),
+        itemDivider(),
+        itemSetting('assets/images/ic_sign_out.png', 'sign_out'.tr,
+            onTap: logout),
       ],
     );
   }
@@ -150,29 +170,125 @@ class _SettingsFragmentState extends State<SettingsFragment> {
       onTap: onTap,
       leading: ImageIcon(AssetImage(icon)),
       title: Text(title),
-      titleTextStyle: const TextStyle(
-        fontSize: 15,
-        fontWeight: FontWeight.w600,
-        color: Colors.black,
-      ),
+      titleTextStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+          ),
     );
   }
 
   Column header() {
-    return const Column(
+    return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        const SizedBox(height: 4),
         Text(
-          'My Settings',
+          'my_settings'.tr,
           style: TextStyle(
-            color: Colors.black,
             fontSize: 16,
+            color: Theme.of(context).colorScheme.onSurface,
             fontWeight: FontWeight.w600,
           ),
         ),
-        Text('Protect your account', style: TextStyle(color: Colors.black)),
+        Text('protect_account'.tr,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface,
+            )),
       ],
+    );
+  }
+
+  void _showThemeSheet() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Obx(() {
+          final current = settingsController.themeMode;
+          return SafeArea(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ListTile(
+                  title: Text('system'.tr),
+                  trailing: current == ThemeMode.system
+                      ? const Icon(Icons.check)
+                      : null,
+                  onTap: () {
+                    settingsController.applyTheme(ThemeMode.system);
+                    Get.back();
+                  },
+                ),
+                ListTile(
+                  title: Text('light'.tr),
+                  trailing: current == ThemeMode.light
+                      ? const Icon(Icons.check)
+                      : null,
+                  onTap: () {
+                    settingsController.applyTheme(ThemeMode.light);
+                    Get.back();
+                  },
+                ),
+                ListTile(
+                  title: Text('dark'.tr),
+                  trailing: current == ThemeMode.dark
+                      ? const Icon(Icons.check)
+                      : null,
+                  onTap: () {
+                    settingsController.applyTheme(ThemeMode.dark);
+                    Get.back();
+                  },
+                ),
+                DView.height(),
+              ],
+            ),
+          );
+        });
+      },
+    );
+  }
+
+  void _showLanguageSheet() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Obx(() {
+          final current = settingsController.languageCode;
+          return SafeArea(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ListTile(
+                  title: Text('system'.tr),
+                  trailing:
+                      current == 'system' ? const Icon(Icons.check) : null,
+                  onTap: () {
+                    settingsController.applyLanguage('system');
+                    Get.back();
+                  },
+                ),
+                ListTile(
+                  title: Text('english'.tr),
+                  trailing: current == 'en_US' ? const Icon(Icons.check) : null,
+                  onTap: () {
+                    settingsController.applyLanguage('en_US');
+                    Get.back();
+                  },
+                ),
+                ListTile(
+                  title: Text('indonesian'.tr),
+                  trailing: current == 'id_ID' ? const Icon(Icons.check) : null,
+                  onTap: () {
+                    settingsController.applyLanguage('id_ID');
+                    Get.back();
+                  },
+                ),
+                DView.height(),
+              ],
+            ),
+          );
+        });
+      },
     );
   }
 }

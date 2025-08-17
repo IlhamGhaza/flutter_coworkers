@@ -1,7 +1,7 @@
 import 'package:flutter_coworkers/config/appwrite.dart';
 import 'package:flutter_coworkers/config/enums.dart';
 import 'package:flutter_coworkers/controllers/list_worker_controller.dart';
-import 'package:flutter_coworkers/models/worker_model.dart';
+import 'package:flutter_coworkers/data/models/worker_model.dart';
 import 'package:flutter_coworkers/widgets/header_worker.dart';
 import 'package:d_view/d_view.dart';
 import 'package:flutter/material.dart';
@@ -62,9 +62,9 @@ class _ListWorkerPageState extends State<ListWorkerPage> {
                         child: HeaderWorker(
                           title: widget.category,
                           subtitle: '13,492 workers',
-                          iconLeft: 'assets/ic_back.png',
-                          functionLeft: () => Navigator.pop(context),
-                          iconRight: 'assets/ic_filter.png',
+                          iconLeft: 'assets/images/ic_back.png',
+                          functionLeft: () => Get.back(),
+                          iconRight: 'assets/images/ic_filter.png',
                           functionRight: () {},
                         ),
                       ),
@@ -75,11 +75,11 @@ class _ListWorkerPageState extends State<ListWorkerPage> {
               ],
             ),
           ),
-          DView.spaceHeight(50),
+          DView.height(50),
           topRatedCategory(),
-          DView.spaceHeight(30),
+          DView.height(30),
           availableWorker(),
-          DView.spaceHeight(),
+          DView.height(),
         ],
       ),
     );
@@ -94,7 +94,7 @@ class _ListWorkerPageState extends State<ListWorkerPage> {
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xffe5e7ec).withOpacity(0.5),
+            color: const Color(0xffe5e7ec).withValues(alpha: 0.5),
             blurRadius: 30,
             offset: const Offset(0, 6),
           ),
@@ -126,7 +126,7 @@ class _ListWorkerPageState extends State<ListWorkerPage> {
           ),
           IconButton(
             onPressed: () {},
-            icon: const ImageIcon(AssetImage('assets/ic_search.png')),
+            icon: const ImageIcon(AssetImage('assets/images/ic_search.png')),
           ),
         ],
       ),
@@ -138,7 +138,7 @@ class _ListWorkerPageState extends State<ListWorkerPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SectionTitle(text: 'Top Rated ${widget.category}', autoPadding: true),
-        DView.spaceHeight(),
+        DView.height(),
         SizedBox(
           height: 120,
           child: ListView.builder(
@@ -163,7 +163,7 @@ class _ListWorkerPageState extends State<ListWorkerPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(worker['image'], width: 46, height: 46),
-                    DView.spaceHeight(6),
+                    DView.height(6),
                     Text(
                       worker['name'],
                       style: const TextStyle(
@@ -172,16 +172,16 @@ class _ListWorkerPageState extends State<ListWorkerPage> {
                         color: Colors.black,
                       ),
                     ),
-                    DView.spaceHeight(4),
+                    DView.height(4),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
-                          'assets/ic_star_small.png',
+                          'assets/images/ic_star_small.png',
                           height: 16,
                           width: 16,
                         ),
-                        DView.spaceWidth(2),
+                        DView.width(2),
                         Text(
                           '${worker['rate']}',
                           style: const TextStyle(color: Colors.black),
@@ -202,8 +202,8 @@ class _ListWorkerPageState extends State<ListWorkerPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SectionTitle(text: 'Available Workers', autoPadding: true),
-        DView.spaceHeight(),
+        SectionTitle(text: 'available_workers'.tr, autoPadding: true),
+        DView.height(),
         Obx(() {
           String statusFetch = listWorkerController.statusFetch;
           if (statusFetch == '') return DView.nothing();
@@ -219,9 +219,8 @@ class _ListWorkerPageState extends State<ListWorkerPage> {
               WorkerModel item = list[index];
               return GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    AppRoute.workerProfile.name,
+                  Get.toNamed(
+                    AppRoute.workerProfile.path,
                     arguments: item,
                   );
                 },
@@ -239,7 +238,7 @@ class _ListWorkerPageState extends State<ListWorkerPage> {
                         width: 60,
                         height: 60,
                       ),
-                      DView.spaceWidth(12),
+                      DView.width(12),
                       Expanded(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -253,7 +252,7 @@ class _ListWorkerPageState extends State<ListWorkerPage> {
                                 color: Colors.black,
                               ),
                             ),
-                            DView.spaceHeight(2),
+                            DView.height(2),
                             Text(
                               '${item.location} • ${item.experience}yrs',
                               style: const TextStyle(color: Colors.grey),
@@ -274,18 +273,18 @@ class _ListWorkerPageState extends State<ListWorkerPage> {
                                   color: Colors.black,
                                 ),
                               ),
-                              const Text('/hr'),
+                              Text('per_hr_short'.tr),
                             ],
                           ),
-                          DView.spaceHeight(2),
+                          DView.height(2),
                           Row(
                             children: [
                               Image.asset(
-                                'assets/ic_star_small.png',
+                                'assets/images/ic_star_small.png',
                                 width: 16,
                                 height: 16,
                               ),
-                              DView.spaceWidth(2),
+                              DView.width(2),
                               Text(
                                 item.rating.toString(),
                                 style: const TextStyle(color: Colors.black),

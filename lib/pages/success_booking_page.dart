@@ -30,28 +30,28 @@ class _SuccessBookingPageState extends State<SuccessBookingPage> {
     return Scaffold(
       body: Stack(
         children: [
-          Image.asset('assets/blur_purple.png'),
-          Image.asset('assets/blur_blue.png'),
+          Image.asset('assets/images/blur_purple.png'),
+          Image.asset('assets/images/blur_blue.png'),
           SizedBox(
             width: double.infinity,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  'Success Hiring!',
-                  style: TextStyle(
+                Text(
+                  'success_hiring'.tr,
+                  style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
                   ),
                 ),
-                DView.spaceHeight(10),
-                const Text(
-                  'Time to expand your business\nand grow confidently',
+                DView.height(10),
+                Text(
+                  'time_expand'.tr,
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black),
                 ),
-                DView.spaceHeight(50),
+                DView.height(50),
                 Stack(
                   children: [
                     Container(
@@ -71,7 +71,7 @@ class _SuccessBookingPageState extends State<SuccessBookingPage> {
                     hiredText(),
                   ],
                 ),
-                DView.spaceHeight(30),
+                DView.height(30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -83,17 +83,17 @@ class _SuccessBookingPageState extends State<SuccessBookingPage> {
                         color: Colors.black,
                       ),
                     ),
-                    DView.spaceWidth(4),
+                    DView.width(4),
                     Image.asset(
-                      'assets/ic_verified.png',
+                      'assets/images/ic_verified.png',
                       width: 20,
                       height: 20,
                     ),
                   ],
                 ),
-                DView.spaceHeight(8),
+                DView.height(8),
                 rating(),
-                DView.spaceHeight(60),
+                DView.height(60),
                 SizedBox(
                   width: 270,
                   child: FilledButton(
@@ -104,10 +104,10 @@ class _SuccessBookingPageState extends State<SuccessBookingPage> {
                         bookingController.bookingDetail.worker!.category,
                       );
                     },
-                    child: const Text('Worker Profile'),
+                    child: Text('worker_profile'.tr),
                   ),
                 ),
-                DView.spaceHeight(),
+                DView.height(),
                 SizedBox(
                   width: 270,
                   child: SecondaryButton(
@@ -117,7 +117,7 @@ class _SuccessBookingPageState extends State<SuccessBookingPage> {
                         bookingController.bookingDetail.worker!.category,
                       );
                     },
-                    child: const Text('Hire other worker'),
+                    child: Text('hire_other_worker'.tr),
                   ),
                 ),
               ],
@@ -145,7 +145,7 @@ class _SuccessBookingPageState extends State<SuccessBookingPage> {
           onRatingUpdate: (rating) {},
           ignoreGestures: true,
         ),
-        DView.spaceWidth(8),
+        DView.width(8),
         Text(
           '(${AppFormat.number(bookingController.bookingDetail.worker!.ratingCount)})',
           style: const TextStyle(
@@ -172,9 +172,9 @@ class _SuccessBookingPageState extends State<SuccessBookingPage> {
               color: const Color(0xffBFA8FF),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: const Text(
-              'HIRED',
-              style: TextStyle(
+            child: Text(
+              'hired'.tr,
+              style: const TextStyle(
                 fontWeight: FontWeight.w600,
                 color: Colors.black,
               ),

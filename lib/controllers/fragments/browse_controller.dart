@@ -1,104 +1,104 @@
 import 'package:get/get.dart';
 
 class BrowseController extends GetxController {
-  clear() {
+  void clear() {
     Get.delete<BrowseController>(force: true);
   }
 
-  List categories = [
+  List<Map<String, String>> categories = [
     {
       'label': 'Driver',
-      'icon': 'assets/ic_driver.png',
+      'icon': 'assets/images/ic_driver.png',
     },
     {
       'label': 'Tutor',
-      'icon': 'assets/ic_tutor.png',
+      'icon': 'assets/images/ic_tutor.png',
     },
     {
       'label': 'Gardener',
-      'icon': 'assets/ic_gardener.png',
+      'icon': 'assets/images/ic_gardener.png',
     },
     {
       'label': 'Cleaner',
-      'icon': 'assets/ic_cleaner.png',
+      'icon': 'assets/images/ic_cleaner.png',
     },
     {
       'label': 'Other',
-      'icon': 'assets/ic_others.png',
+      'icon': 'assets/images/ic_others.png',
     },
   ];
 
-  List highRatedWorkers = [
+  List<Map<String, dynamic>> highRatedWorkers = [
     {
-      'image': 'assets/shian.png',
+      'image': 'assets/images/shian.png',
       'name': 'Shian',
       'rate': 4.8,
     },
     {
-      'image': 'assets/cindinan.png',
+      'image': 'assets/images/cindinan.png',
       'name': 'Cindinan',
       'rate': 4.9,
     },
     {
-      'image': 'assets/ajinomo.png',
+      'image': 'assets/images/ajinomo.png',
       'name': 'Ajinomo',
       'rate': 4.8,
     },
     {
-      'image': 'assets/sajima.png',
+      'image': 'assets/images/sajima.png',
       'name': 'Sajima',
       'rate': 4.8,
     },
   ];
 
-  List newcomers = [
+  List<Map<String, String>> newcomers = [
     {
-      'image': 'assets/jundi.png',
+      'image': 'assets/images/jundi.png',
       'name': 'Jundi',
       'job': 'Gardener',
     },
     {
-      'image': 'assets/mona.png',
+      'image': 'assets/images/mona.png',
       'name': 'Mona',
       'job': 'Chef',
     },
     {
-      'image': 'assets/sushi.png',
+      'image': 'assets/images/sushi.png',
       'name': 'Sushi',
       'job': 'Tutor',
     },
     {
-      'image': 'assets/romi.png',
+      'image': 'assets/images/romi.png',
       'name': 'Romi',
       'job': 'Writer',
     },
     {
-      'image': 'assets/lona.png',
+      'image': 'assets/images/lona.png',
       'name': 'Lona',
       'job': 'Cleaner',
     },
     {
-      'image': 'assets/daren.png',
+      'image': 'assets/images/daren.png',
       'name': 'Daren',
       'job': 'Security',
     },
   ];
 
-  List curatedTips = [
+  List<Map<String, dynamic>> curatedTips = [
     {
-      'image': 'assets/news1.png',
+      'image': 'assets/images/news1.png',
       'name': '12 Tips Seleksi Pekerja',
       'category': 'Productivity',
       'is_popular': false,
     },
     {
-      'image': 'assets/news3.png',
+      'image': 'assets/images/news3.png',
       'name': 'Kapan Harus Scale Up?',
       'category': 'BUssiness',
       'is_popular': true,
     },
     {
-      'image': 'assets/news2.png',
+      'image': 'assets/images/news2.png',
       'name': 'Pemilihan Alat Cleaner',
       'category': 'Health',
       'is_popular': false,

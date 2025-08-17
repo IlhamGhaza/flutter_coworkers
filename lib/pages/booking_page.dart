@@ -12,7 +12,7 @@ import '../widgets/section_title.dart';
 import '../config/app_color.dart';
 import '../config/app_format.dart';
 import '../config/appwrite.dart';
-import '../models/worker_model.dart';
+import '../data/models/worker_model.dart';
 
 class BookingPage extends StatefulWidget {
   const BookingPage({super.key, required this.worker});
@@ -62,11 +62,11 @@ class _BookingPageState extends State<BookingPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       HeaderWorkerLeft(
-                        title: 'Booking Worker',
-                        subtitle: 'Grow your bussiness today',
-                        iconLeft: 'assets/ic_back.png',
+                        title: 'booking_worker'.tr,
+                        subtitle: 'grow_business'.tr,
+                        iconLeft: 'assets/images/ic_back.png',
                         functionLeft: () {
-                          Navigator.pop(context);
+                          Get.back();
                         },
                       ),
                       worker(),
@@ -76,23 +76,23 @@ class _BookingPageState extends State<BookingPage> {
               ],
             ),
           ),
-          DView.spaceHeight(90),
+          DView.height(90),
           selectDuration(),
-          DView.spaceHeight(30),
+          DView.height(30),
           whenYouNeed(),
-          DView.spaceHeight(30),
+          DView.height(30),
           details(),
-          DView.spaceHeight(30),
+          DView.height(30),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: FilledButton(
               onPressed: () {
-                Navigator.pushNamed(context, AppRoute.checkout.name);
+                Get.toNamed(AppRoute.checkout.path);
               },
-              child: const Text('Proceed Checkout'),
+              child: Text('proceed_checkout'.tr),
             ),
           ),
-          DView.spaceHeight(20),
+          DView.height(20),
         ],
       ),
     );
@@ -104,41 +104,41 @@ class _BookingPageState extends State<BookingPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SectionTitle(text: 'Details'),
+          SectionTitle(text: 'details'.tr),
           Obx(() {
             return itemDetail(
-              'Hiring duration',
+              'hiring_duration'.tr,
               '${bookingController.duration} hours',
             );
           }),
           itemDetail(
-            'Date',
+            'date'.tr,
             DateFormat(
               'dd MMM yyyy',
             ).format(bookingController.bookingDetail.date),
           ),
           GetBuilder<BookingController>(
-            builder: (_) {
+            builder: (controller) {
               return itemDetail(
-                'Sub total',
-                AppFormat.price(_.bookingDetail.subtotal),
+                'subtotal'.tr,
+                AppFormat.price(controller.bookingDetail.subtotal),
               );
             },
           ),
           itemDetail(
-            'Insurance',
+            'insurance'.tr,
             AppFormat.price(bookingController.bookingDetail.insurance),
           ),
           itemDetail(
-            'Tax 14%',
+            'tax14'.tr,
             AppFormat.price(bookingController.bookingDetail.tax),
           ),
           itemDetail(
-            'Platform fee',
+            'platform_fee'.tr,
             AppFormat.price(bookingController.bookingDetail.platformFee),
           ),
           itemDetail(
-            'Grand total',
+            'grand_total'.tr,
             AppFormat.price(bookingController.bookingDetail.grandTotal),
           ),
         ],
@@ -173,8 +173,8 @@ class _BookingPageState extends State<BookingPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SectionTitle(text: 'When you need?', autoPadding: true),
-        DView.spaceHeight(),
+        SectionTitle(text: 'when_need'.tr, autoPadding: true),
+        DView.height(),
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
@@ -193,19 +193,19 @@ class _BookingPageState extends State<BookingPage> {
                 ),
                 alignment: Alignment.center,
                 child: Image.asset(
-                  'assets/ic_clock.png',
+                  'assets/images/ic_clock.png',
                   width: 24,
                   height: 24,
                 ),
               ),
-              DView.spaceWidth(12),
+              DView.width(12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Today',
-                      style: TextStyle(
+                    Text(
+                      'today'.tr,
+                      style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
                         color: Colors.black,
@@ -232,8 +232,8 @@ class _BookingPageState extends State<BookingPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SectionTitle(text: 'How many hours?', autoPadding: true),
-        DView.spaceHeight(),
+        SectionTitle(text: 'how_many_hours'.tr, autoPadding: true),
+        DView.height(),
         SizedBox(
           height: 100,
           child: Obx(() {
@@ -284,7 +284,7 @@ class _BookingPageState extends State<BookingPage> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const Text('Hours', style: TextStyle(color: Colors.white)),
+          Text('hours'.tr, style: const TextStyle(color: Colors.white)),
         ],
       ),
     );
@@ -310,7 +310,7 @@ class _BookingPageState extends State<BookingPage> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const Text('Hours'),
+          Text('hours'.tr),
         ],
       ),
     );
@@ -333,7 +333,7 @@ class _BookingPageState extends State<BookingPage> {
                 width: 70,
                 height: 70,
               ),
-              DView.spaceWidth(12),
+              DView.width(12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -348,23 +348,23 @@ class _BookingPageState extends State<BookingPage> {
                             color: Colors.black,
                           ),
                         ),
-                        DView.spaceWidth(4),
+                        DView.width(4),
                         Image.asset(
-                          'assets/ic_verified.png',
+                          'assets/images/ic_verified.png',
                           width: 16,
                           height: 16,
                         ),
                       ],
                     ),
-                    DView.spaceHeight(4),
+                    DView.height(4),
                     Row(
                       children: [
                         Image.asset(
-                          'assets/ic_star_small.png',
+                          'assets/images/ic_star_small.png',
                           width: 16,
                           height: 16,
                         ),
-                        DView.spaceWidth(2),
+                        DView.width(2),
                         Text(
                           widget.worker.rating.toString(),
                           style: const TextStyle(color: Colors.black),
@@ -374,7 +374,7 @@ class _BookingPageState extends State<BookingPage> {
                   ],
                 ),
               ),
-              DView.spaceWidth(12),
+              DView.width(12),
               Row(
                 children: [
                   Text(
@@ -385,7 +385,7 @@ class _BookingPageState extends State<BookingPage> {
                       color: Colors.black,
                     ),
                   ),
-                  const Text('/hr'),
+                  Text('per_hr_short'.tr),
                 ],
               ),
             ],

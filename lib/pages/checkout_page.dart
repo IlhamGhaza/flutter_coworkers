@@ -53,9 +53,9 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       HeaderWorkerLeft(
                         title: 'Checkout',
                         subtitle: 'Start hiring and grow',
-                        iconLeft: 'assets/ic_back.png',
+                        iconLeft: 'assets/images/ic_back.png',
                         functionLeft: () {
-                          Navigator.pop(context);
+                          Get.back();
                         },
                       ),
                       payments(),
@@ -66,7 +66,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
             ),
           ),
           Transform.translate(offset: const Offset(0, 60), child: walletBox()),
-          DView.spaceHeight(50),
+          DView.height(50),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -86,7 +86,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
               }),
             ],
           ),
-          DView.spaceHeight(30),
+          DView.height(30),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
@@ -104,7 +104,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     color: Theme.of(context).primaryColor,
                   ),
                 ),
-                DView.spaceWidth(8),
+                DView.width(8),
                 const Text(
                   'I agree with terms and conditions',
                   style: TextStyle(color: Colors.black),
@@ -112,7 +112,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
               ],
             ),
           ),
-          DView.spaceHeight(30),
+          DView.height(30),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Obx(() {
@@ -124,12 +124,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     bookingController.bookingDetail,
                   );
                 },
-                icon: const ImageIcon(AssetImage('assets/ic_secure.png')),
+                icon:
+                    const ImageIcon(AssetImage('assets/images/ic_secure.png')),
                 label: const Text('Pay Now'),
               );
             }),
           ),
-          DView.spaceHeight(30),
+          DView.height(30),
           const Center(
             child: Text(
               'Read Terms & Conditions',
@@ -150,7 +151,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
   Widget walletBox() {
     return Stack(
       children: [
-        Image.asset('assets/bg_card.png'),
+        Image.asset('assets/images/bg_card.png'),
         Positioned(
           left: 60,
           top: 110,
@@ -209,13 +210,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   ),
                   child: Image.asset(e['image']),
                 ),
-                DView.spaceHeight(8),
+                DView.height(8),
                 Text(
                   e['label'],
                   style: TextStyle(
-                    color: e['is_active']
-                        ? Colors.black
-                        : const Color(0xffA7A8B3),
+                    color:
+                        e['is_active'] ? Colors.black : const Color(0xffA7A8B3),
                     fontWeight: FontWeight.w600,
                   ),
                 ),

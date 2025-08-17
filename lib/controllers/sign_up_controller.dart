@@ -1,10 +1,11 @@
 import 'package:flutter_coworkers/config/app_info.dart';
-import 'package:flutter_coworkers/datasources/user_datasource.dart';
+import 'package:flutter_coworkers/config/enums.dart';
+import 'package:flutter_coworkers/data/datasources/user_datasource.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SignUpController extends GetxController {
-  clear() {
+  void clear() {
     Get.delete<SignUpController>(force: true);
   }
 
@@ -16,7 +17,7 @@ class SignUpController extends GetxController {
   bool get loading => _loading.value;
   set loading(bool n) => _loading.value = n;
 
-  execute(BuildContext context) {
+  void execute(BuildContext context) {
     if (edtName.text == '') {
       AppInfo.failed(context, 'Name wajib diisi');
       return;
@@ -52,7 +53,10 @@ class SignUpController extends GetxController {
           AppInfo.failed(context, message);
         },
         (data) {
-          AppInfo.toastSucces('Berhasil');
+          Get.offAllNamed(
+            AppRoute.signIn.path,
+            arguments: 'signup_success'.tr,
+          );
         },
       );
     });

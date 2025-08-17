@@ -1,4 +1,4 @@
-import 'package:flutter_coworkers/models/worker_model.dart';
+import 'package:flutter_coworkers/data/models/worker_model.dart';
 import 'package:d_view/d_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,7 +7,7 @@ import '../../config/app_color.dart';
 import '../../config/appwrite.dart';
 import '../../controllers/fragments/order_controller.dart';
 import '../../controllers/user_controller.dart';
-import '../../models/booking_model.dart';
+import '../../data/models/booking_model.dart';
 
 class OrderFragment extends StatefulWidget {
   const OrderFragment({super.key});
@@ -53,13 +53,13 @@ class _OrderFragmentState extends State<OrderFragment> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   header(),
-                  DView.spaceHeight(20),
+                  DView.height(20),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Row(
                       children: [
                         Expanded(child: menuOrder('In Progress')),
-                        DView.spaceWidth(30),
+                        DView.width(30),
                         Expanded(child: menuOrder('Completed')),
                       ],
                     ),
@@ -69,7 +69,7 @@ class _OrderFragmentState extends State<OrderFragment> {
             ],
           ),
         ),
-        DView.spaceHeight(24),
+        DView.height(24),
         Expanded(
           child: Obx(() {
             return IndexedStack(
@@ -118,7 +118,7 @@ class _OrderFragmentState extends State<OrderFragment> {
                     width: 60,
                     height: 60,
                   ),
-                  DView.spaceWidth(12),
+                  DView.width(12),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -132,7 +132,7 @@ class _OrderFragmentState extends State<OrderFragment> {
                             color: Colors.black,
                           ),
                         ),
-                        DView.spaceHeight(2),
+                        DView.height(2),
                         Text(
                           worker.category,
                           style: const TextStyle(color: Colors.grey),
@@ -189,7 +189,7 @@ class _OrderFragmentState extends State<OrderFragment> {
                   width: 60,
                   height: 60,
                 ),
-                DView.spaceWidth(12),
+                DView.width(12),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -203,7 +203,7 @@ class _OrderFragmentState extends State<OrderFragment> {
                           color: Colors.black,
                         ),
                       ),
-                      DView.spaceHeight(2),
+                      DView.height(2),
                       Text(
                         worker.category,
                         style: const TextStyle(color: Colors.grey),
@@ -246,7 +246,7 @@ class _OrderFragmentState extends State<OrderFragment> {
             borderRadius: BorderRadius.circular(50),
             boxShadow: [
               BoxShadow(
-                color: const Color(0xffE5E7EC).withOpacity(0.5),
+                color: const Color(0xffE5E7EC).withValues(alpha: 0.5),
                 blurRadius: 30,
                 offset: const Offset(0, 30),
               ),
@@ -293,22 +293,23 @@ class _OrderFragmentState extends State<OrderFragment> {
           ),
           IconButton.filled(
             onPressed: () {},
-            icon: const ImageIcon(AssetImage('assets/ic_search.png')),
+            icon: const ImageIcon(AssetImage('assets/images/ic_search.png')),
             style: const ButtonStyle(
-              backgroundColor: MaterialStatePropertyAll(Colors.white),
-              foregroundColor: MaterialStatePropertyAll(Colors.black),
+              backgroundColor: WidgetStatePropertyAll(Colors.white),
+              foregroundColor: WidgetStatePropertyAll(Colors.black),
             ),
           ),
           IconButton.filled(
             onPressed: () {},
-            icon: const ImageIcon(AssetImage('assets/ic_filter.png')),
+            icon: const ImageIcon(AssetImage('assets/images/ic_filter.png')),
             style: const ButtonStyle(
-              backgroundColor: MaterialStatePropertyAll(Colors.white),
-              foregroundColor: MaterialStatePropertyAll(Colors.black),
+              backgroundColor: WidgetStatePropertyAll(Colors.white),
+              foregroundColor: WidgetStatePropertyAll(Colors.black),
             ),
           ),
         ],
       ),
     );
   }
+
 }

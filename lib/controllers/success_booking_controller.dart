@@ -5,27 +5,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SuccessBookingController extends GetxController {
-  clear() {
+  void clear() {
     Get.delete<SuccessBookingController>(force: true);
   }
 
-  toWorkerProfile(BuildContext context, String workerId, String category) {
+  void toWorkerProfile(BuildContext context, String workerId, String category) {
     final workerProfileController = Get.put(WorkerProfileController());
     workerProfileController.checkHiredBy(workerId);
     final listWorkerController = Get.put(ListWorkerController());
     listWorkerController.fetchAvailable(category);
-    Navigator.popUntil(
-      context,
-      (route) => route.settings.name == AppRoute.workerProfile.name,
-    );
+    Get.until((route) => route.settings.name == AppRoute.workerProfile.path);
   }
 
-  toListWorker(BuildContext context, String category) {
+  void toListWorker(BuildContext context, String category) {
     final listWorkerController = Get.put(ListWorkerController());
     listWorkerController.fetchAvailable(category);
-    Navigator.popUntil(
-      context,
-      (route) => route.settings.name == AppRoute.listWorker.name,
-    );
+    Get.until((route) => route.settings.name == AppRoute.listWorker.path);
   }
 }

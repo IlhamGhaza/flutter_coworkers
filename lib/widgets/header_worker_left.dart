@@ -23,10 +23,10 @@ class HeaderWorkerLeft extends StatelessWidget {
             onPressed: functionLeft,
             icon: ImageIcon(AssetImage(iconLeft)),
             style: const ButtonStyle(
-              backgroundColor: MaterialStatePropertyAll(
+              backgroundColor: WidgetStatePropertyAll(
                 Colors.white,
               ),
-              foregroundColor: MaterialStatePropertyAll(
+              foregroundColor: WidgetStatePropertyAll(
                 Colors.black,
               ),
             ),

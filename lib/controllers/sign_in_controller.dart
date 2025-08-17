@@ -1,12 +1,12 @@
 import 'package:flutter_coworkers/config/app_info.dart';
 import 'package:flutter_coworkers/config/enums.dart';
 import 'package:flutter_coworkers/config/session.dart';
-import 'package:flutter_coworkers/datasources/user_datasource.dart';
+import 'package:flutter_coworkers/data/datasources/user_datasource.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SignInController extends GetxController {
-  clear() {
+  void clear() {
     Get.delete<SignInController>(force: true);
   }
 
@@ -17,7 +17,7 @@ class SignInController extends GetxController {
   bool get loading => _loading.value;
   set loading(bool n) => _loading.value = n;
 
-  execute(BuildContext context) {
+  void execute(BuildContext context) {
     if (edtEmail.text == '') {
       AppInfo.failed(context, 'Email wajib diisi');
       return;
@@ -47,8 +47,8 @@ class SignInController extends GetxController {
         },
         (data) {
           AppSession.setUser(data);
-          AppInfo.toastSucces('Berhasil');
-          Navigator.pushReplacementNamed(context, AppRoute.dashboard.name);
+          AppInfo.toastSucces(context, 'Berhasil');
+          Get.offNamed(AppRoute.dashboard.path);
         },
       );
     });

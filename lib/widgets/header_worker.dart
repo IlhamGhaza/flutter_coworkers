@@ -26,10 +26,10 @@ class HeaderWorker extends StatelessWidget {
             onPressed: functionLeft,
             icon: ImageIcon(AssetImage(iconLeft)),
             style: const ButtonStyle(
-              backgroundColor: MaterialStatePropertyAll(
+              backgroundColor: WidgetStatePropertyAll(
                 Colors.white,
               ),
-              foregroundColor: MaterialStatePropertyAll(
+              foregroundColor: WidgetStatePropertyAll(
                 Colors.black,
               ),
             ),
@@ -60,10 +60,10 @@ class HeaderWorker extends StatelessWidget {
             onPressed: functionRight,
             icon: ImageIcon(AssetImage(iconRight)),
             style: const ButtonStyle(
-              backgroundColor: MaterialStatePropertyAll(
+              backgroundColor: WidgetStatePropertyAll(
                 Colors.white,
               ),
-              foregroundColor: MaterialStatePropertyAll(
+              foregroundColor: WidgetStatePropertyAll(
                 Colors.black,
               ),
             ),

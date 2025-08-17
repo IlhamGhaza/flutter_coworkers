@@ -1,7 +1,7 @@
 import 'package:appwrite/appwrite.dart';
 import 'package:flutter_coworkers/config/app_log.dart';
 import 'package:flutter_coworkers/config/appwrite.dart';
-import 'package:flutter_coworkers/models/worker_model.dart';
+import 'package:flutter_coworkers/data/models/worker_model.dart';
 import 'package:dartz/dartz.dart';
 
 class WorkerDatasource {

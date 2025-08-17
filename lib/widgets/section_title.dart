@@ -13,10 +13,10 @@ class SectionTitle extends StatelessWidget {
           : const EdgeInsets.all(0),
       child: Text(
         text,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.w600,
-          color: Colors.black,
+          color: Theme.of(context).colorScheme.onSurface,
         ),
       ),
     );

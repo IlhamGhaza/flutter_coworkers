@@ -1,5 +1,5 @@
 import 'package:flutter_coworkers/controllers/worker_profile_controller.dart';
-import 'package:flutter_coworkers/models/worker_model.dart';
+import 'package:flutter_coworkers/data/models/worker_model.dart';
 import 'package:flutter_coworkers/widgets/secondary_button.dart';
 import 'package:flutter_coworkers/widgets/section_title.dart';
 import 'package:d_view/d_view.dart';
@@ -81,13 +81,13 @@ class _WorkerProfilePageState extends State<WorkerProfilePage> {
                     child: HeaderWorker(
                       title: 'Worker Profile',
                       subtitle: 'Details are matters',
-                      iconLeft: 'assets/ic_back.png',
-                      functionLeft: () => Navigator.pop(context),
-                      iconRight: 'assets/ic_other.png',
+                      iconLeft: 'assets/images/ic_back.png',
+                      functionLeft: () => Get.back(),
+                      iconRight: 'assets/images/ic_other.png',
                       functionRight: () {},
                     ),
                   ),
-                  DView.spaceHeight(24),
+                  DView.height(24),
                   Stack(
                     children: [
                       Container(
@@ -114,7 +114,7 @@ class _WorkerProfilePageState extends State<WorkerProfilePage> {
                       }),
                     ],
                   ),
-                  DView.spaceHeight(12),
+                  DView.height(12),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -126,9 +126,9 @@ class _WorkerProfilePageState extends State<WorkerProfilePage> {
                           color: Colors.black,
                         ),
                       ),
-                      DView.spaceWidth(4),
+                      DView.width(4),
                       Image.asset(
-                        'assets/ic_verified.png',
+                        'assets/images/ic_verified.png',
                         width: 20,
                         height: 20,
                       ),
@@ -136,9 +136,8 @@ class _WorkerProfilePageState extends State<WorkerProfilePage> {
                   ),
                   Obx(() {
                     String recruiterId = workerProfileController.recruiterId;
-                    String txtAvailable = recruiterId == 'Available'
-                        ? ' • Available'
-                        : '';
+                    String txtAvailable =
+                        recruiterId == 'Available' ? ' • Available' : '';
                     return Text(
                       '${widget.worker.location} • ${widget.worker.experience}yrs$txtAvailable',
                       style: const TextStyle(color: Colors.grey),
@@ -148,9 +147,9 @@ class _WorkerProfilePageState extends State<WorkerProfilePage> {
               ),
             ],
           ),
-          DView.spaceHeight(30),
+          DView.height(30),
           const SectionTitle(text: 'About', autoPadding: true),
-          DView.spaceHeight(8),
+          DView.height(8),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
@@ -158,7 +157,7 @@ class _WorkerProfilePageState extends State<WorkerProfilePage> {
               style: const TextStyle(color: Colors.black, fontSize: 16),
             ),
           ),
-          DView.spaceHeight(8),
+          DView.height(8),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
@@ -176,7 +175,7 @@ class _WorkerProfilePageState extends State<WorkerProfilePage> {
                   onRatingUpdate: (rating) {},
                   ignoreGestures: true,
                 ),
-                DView.spaceWidth(8),
+                DView.width(8),
                 Text(
                   '(${AppFormat.number(widget.worker.ratingCount)})',
                   style: const TextStyle(
@@ -188,9 +187,9 @@ class _WorkerProfilePageState extends State<WorkerProfilePage> {
               ],
             ),
           ),
-          DView.spaceHeight(30),
+          DView.height(30),
           const SectionTitle(text: 'My Strengths', autoPadding: true),
-          DView.spaceHeight(8),
+          DView.height(8),
           Column(
             children: widget.worker.strengths.map((e) {
               return Padding(
@@ -266,7 +265,7 @@ class _WorkerProfilePageState extends State<WorkerProfilePage> {
               child: const Text('Message'),
             ),
           ),
-          DView.spaceWidth(),
+          DView.width(),
           Expanded(
             child: FilledButton(
               onPressed: () {},
@@ -304,9 +303,8 @@ class _WorkerProfilePageState extends State<WorkerProfilePage> {
             width: 200,
             child: FilledButton(
               onPressed: () {
-                Navigator.pushNamed(
-                  context,
-                  AppRoute.booking.name,
+                Get.toNamed(
+                  AppRoute.booking.path,
                   arguments: widget.worker,
                 );
               },

@@ -11,8 +11,8 @@ class SecondaryButton extends StatelessWidget {
     return FilledButton(
       onPressed: onPressed,
       style: const ButtonStyle(
-        backgroundColor: MaterialStatePropertyAll(AppColor.btnSecondary),
-        foregroundColor: MaterialStatePropertyAll(Colors.black),
+        backgroundColor: WidgetStatePropertyAll(AppColor.btnSecondary),
+        foregroundColor: WidgetStatePropertyAll(Colors.black),
       ),
       child: child,
     );

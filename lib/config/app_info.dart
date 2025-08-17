@@ -1,12 +1,31 @@
 import 'package:d_info/d_info.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 class AppInfo {
-  static toastSucces(String message) {
-    DInfo.toastSuccess(message);
+  static void toastSucces(BuildContext context, String message) {
+    final bool isMobile = !kIsWeb &&
+        (defaultTargetPlatform == TargetPlatform.android ||
+            defaultTargetPlatform == TargetPlatform.iOS);
+    if (isMobile) {
+      DInfo.toastSuccess(message);
+      return;
+    }
+    // Fallback for desktop/web: use SnackBar
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          message,
+          style: const TextStyle(color: Colors.white),
+          textAlign: TextAlign.center,
+        ),
+        backgroundColor: Colors.green,
+        duration: const Duration(seconds: 2),
+      ),
+    );
   }
 
-  static success(BuildContext context, String message) {
+  static void success(BuildContext context, String message) {
     // DInfo.snackBarSuccess(context, message);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -21,7 +40,7 @@ class AppInfo {
     );
   }
 
-  static failed(BuildContext context, String message) {
+  static void failed(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(

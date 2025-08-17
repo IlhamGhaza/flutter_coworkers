@@ -1,6 +1,7 @@
 import 'package:flutter_coworkers/config/enums.dart';
 import 'package:d_view/d_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class GetStartedPage extends StatelessWidget {
   const GetStartedPage({super.key});
@@ -8,19 +9,19 @@ class GetStartedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const getStarted1 = [
-      'assets/gstarted1.png',
-      'assets/gstarted2.png',
-      'assets/gstarted3.png',
+      'assets/images/gstarted1.png',
+      'assets/images/gstarted2.png',
+      'assets/images/gstarted3.png',
     ];
     const getStarted2 = [
-      'assets/gstarted4.png',
-      'assets/gstarted5.png',
-      'assets/gstarted6.png',
+      'assets/images/gstarted4.png',
+      'assets/images/gstarted5.png',
+      'assets/images/gstarted6.png',
     ];
     const getStarted3 = [
-      'assets/gstarted7.png',
-      'assets/gstarted8.png',
-      'assets/gstarted9.png',
+      'assets/images/gstarted7.png',
+      'assets/images/gstarted8.png',
+      'assets/images/gstarted9.png',
     ];
     return Scaffold(
       body: SingleChildScrollView(
@@ -30,53 +31,60 @@ class GetStartedPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             imageStarted(getStarted1),
-            DView.spaceHeight(20),
+            DView.height(20),
             imageStarted(getStarted2),
-            DView.spaceHeight(20),
+            DView.height(20),
             imageStarted(getStarted3),
-            DView.spaceHeight(30),
-            const Padding(
+            DView.height(30),
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                'Cari pekerja untuk\npertumbuhan bisnis',
+                'get_started_title'.tr,
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w700,
-                  color: Color(0xff13162F),
+                  color: Colors.white,
                   height: 1.5,
                 ),
               ),
             ),
-            DView.spaceHeight(10),
-            const Padding(
+            DView.height(10),
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                'Kami menyediakan berbagai jenis\npekerja siap untuk membantu Anda',
+                'get_started_desc'.tr,
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
-                  color: Color(0xffA7A8B3),
+                  color: Theme.of(context).colorScheme.onSurface,
                   height: 2,
                 ),
               ),
             ),
-            DView.spaceHeight(30),
+            DView.height(30),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: FilledButton(
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, AppRoute.signIn.name);
+                  Get.offNamed(AppRoute.signIn.path);
                 },
-                child: const Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Explore Worker'),
-                    ImageIcon(AssetImage('assets/ic_white_arrow_right.png')),
+                    Text(
+                      'explore_worker'.tr,
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSurface),
+                    ),
+                    ImageIcon(
+                      AssetImage('assets/images/ic_white_arrow_right.png'),
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
                   ],
                 ),
               ),
             ),
-            DView.spaceHeight(30),
+            DView.height(30),
           ],
         ),
       ),
