@@ -70,14 +70,18 @@ class _SignInPageState extends State<SignInPage> {
                       children: [
                         Text(
                           'sign_in'.tr,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 24,
-                            color: Colors.black,
+                            color: Theme.of(context).colorScheme.surface,
                           ),
                         ),
                         DView.height(8),
-                        Text("manage_worker".tr),
+                        Text("manage_worker".tr,
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.surface,
+                          ),
+                        ),
                       ],
                     ),
                   ),

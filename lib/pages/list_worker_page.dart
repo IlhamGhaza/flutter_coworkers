@@ -166,10 +166,10 @@ class _ListWorkerPageState extends State<ListWorkerPage> {
                     DView.height(6),
                     Text(
                       worker['name'],
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w600,
-                        color: Colors.black,
+                        color: Theme.of(context).colorScheme.onSurface,
                       ),
                     ),
                     DView.height(4),
@@ -184,7 +184,9 @@ class _ListWorkerPageState extends State<ListWorkerPage> {
                         DView.width(2),
                         Text(
                           '${worker['rate']}',
-                          style: const TextStyle(color: Colors.black),
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onSurface,
+                          ),
                         ),
                       ],
                     ),
@@ -246,16 +248,18 @@ class _ListWorkerPageState extends State<ListWorkerPage> {
                           children: [
                             Text(
                               item.name,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600,
-                                color: Colors.black,
+                                color: Theme.of(context).colorScheme.onSurface,
                               ),
                             ),
                             DView.height(2),
                             Text(
                               '${item.location} • ${item.experience}yrs',
-                              style: const TextStyle(color: Colors.grey),
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.onSurface,
+                              ),
                             ),
                           ],
                         ),
@@ -267,10 +271,10 @@ class _ListWorkerPageState extends State<ListWorkerPage> {
                             children: [
                               Text(
                                 AppFormat.price(item.hourRate),
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w600,
-                                  color: Colors.black,
+                                  color: Theme.of(context).colorScheme.onSurface,
                                 ),
                               ),
                               Text('per_hr_short'.tr),
@@ -287,7 +291,9 @@ class _ListWorkerPageState extends State<ListWorkerPage> {
                               DView.width(2),
                               Text(
                                 item.rating.toString(),
-                                style: const TextStyle(color: Colors.black),
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.onSurface,
+                                ),
                               ),
                             ],
                           ),
